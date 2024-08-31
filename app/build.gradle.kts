@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "br.erossi.tasksroom"
+    namespace = "br.edu.ifsp.dmo.diario"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "br.erossi.tasksroom"
+        applicationId = "br.edu.ifsp.dmo.diario"
         minSdk = 28
         targetSdk = 34
         versionCode = 1
@@ -43,6 +43,10 @@ dependencies {
     implementation("androidx.room:room-runtime:$version")
     implementation("androidx.room:room-ktx:$version")
     kapt("androidx.room:room-compiler:$version")
+
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
