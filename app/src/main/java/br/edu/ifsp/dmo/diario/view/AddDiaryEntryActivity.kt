@@ -30,13 +30,13 @@ class AddDiaryEntryActivity : AppCompatActivity() {
         if (intent.hasExtra("diaryEntry")) {
             diaryEntry = intent.getSerializableExtra("diaryEntry") as DiaryEntry
             populateFields(diaryEntry)
+            binding.deleteButton.visibility = android.view.View.VISIBLE  // Exibe o botão de excluir
         }
 
         setupDateAndTimePickers()
         setupSaveButton()
+        setupDeleteButton()
     }
-
-
 
     private fun populateFields(entry: DiaryEntry?) {
         entry?.let {
@@ -82,6 +82,12 @@ class AddDiaryEntryActivity : AppCompatActivity() {
         }
     }
 
+    private fun setupDeleteButton() {
+        binding.deleteButton.setOnClickListener {
+            deleteDiaryEntry()
+        }
+    }
+
     private fun saveOrUpdateDiaryEntry() {
         val title = binding.editTextTitle.text.toString()
         val content = binding.editTextContent.text.toString()
@@ -110,6 +116,14 @@ class AddDiaryEntryActivity : AppCompatActivity() {
             finish()
         } else {
             Toast.makeText(this, "Título e conteúdo são obrigatórios", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun deleteDiaryEntry() {
+        diaryEntry?.let {
+            diaryViewModel.delete(it)
+            Toast.makeText(this, "Entrada excluída", Toast.LENGTH_SHORT).show()
+            finish()  // Fecha a activity após a exclusão
         }
     }
 }
