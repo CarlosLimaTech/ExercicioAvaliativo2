@@ -3,6 +3,7 @@ package br.edu.ifsp.dmo.diario.view
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import br.edu.ifsp.dmo.diario.databinding.ActivityAddDiaryEntryBinding
@@ -16,6 +17,7 @@ class AddDiaryEntryActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddDiaryEntryBinding
     private lateinit var diaryViewModel: DiaryViewModel
     private var selectedDate: Date? = null
+    private var diaryEntry: DiaryEntry? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +26,30 @@ class AddDiaryEntryActivity : AppCompatActivity() {
 
         diaryViewModel = ViewModelProvider(this).get(DiaryViewModel::class.java)
 
-        // Configura seleção de data
+        // Recupera o objeto DiaryEntry se ele foi passado
+        if (intent.hasExtra("diaryEntry")) {
+            diaryEntry = intent.getSerializableExtra("diaryEntry") as DiaryEntry
+            populateFields(diaryEntry)
+        }
+
+        setupDateAndTimePickers()
+        setupSaveButton()
+    }
+
+
+
+    private fun populateFields(entry: DiaryEntry?) {
+        entry?.let {
+            binding.editTextTitle.setText(it.title)
+            binding.editTextContent.setText(it.content)
+            binding.editTextLocation.setText(it.location)
+            selectedDate = it.date
+            binding.buttonSelectDate.text = it.date.toString()  // Formate a data conforme necessário
+            // Se precisar, formate a hora também
+        }
+    }
+
+    private fun setupDateAndTimePickers() {
         binding.buttonSelectDate.setOnClickListener {
             val calendar = Calendar.getInstance()
             val datePicker = DatePickerDialog(this, { _, year, month, dayOfMonth ->
@@ -36,7 +61,6 @@ class AddDiaryEntryActivity : AppCompatActivity() {
             datePicker.show()
         }
 
-        // Configura seleção de hora
         binding.buttonSelectTime.setOnClickListener {
             val calendar = Calendar.getInstance()
             val timePicker = TimePickerDialog(this, { _, hourOfDay, minute ->
@@ -50,38 +74,42 @@ class AddDiaryEntryActivity : AppCompatActivity() {
 
             timePicker.show()
         }
+    }
 
-        // Configura o botão de salvar
+    private fun setupSaveButton() {
         binding.saveButton.setOnClickListener {
-            saveDiaryEntry()
+            saveOrUpdateDiaryEntry()
         }
     }
 
-    private fun saveDiaryEntry() {
-        // Obtém os valores dos campos de texto
+    private fun saveOrUpdateDiaryEntry() {
         val title = binding.editTextTitle.text.toString()
         val content = binding.editTextContent.text.toString()
         val location = binding.editTextLocation.text.toString()
-        val date = selectedDate ?: Calendar.getInstance().time // Use a data atual se nenhuma data for selecionada
+        val date = selectedDate ?: Calendar.getInstance().time
 
-        // Verifica se o título e conteúdo não estão vazios
         if (title.isNotEmpty() && content.isNotEmpty()) {
-            // Cria uma nova entrada do diário
-            val diaryEntry = DiaryEntry(
+            val entry = diaryEntry?.copy(
+                title = title,
+                content = content,
+                location = location,
+                date = date
+            ) ?: DiaryEntry(
                 title = title,
                 content = content,
                 location = location,
                 date = date
             )
 
-            // Salva a entrada no banco de dados
-            diaryViewModel.insert(diaryEntry)
+            if (diaryEntry != null) {
+                diaryViewModel.update(entry)
+            } else {
+                diaryViewModel.insert(entry)
+            }
 
-            // Fecha a Activity após salvar
             finish()
         } else {
-            // Se necessário, adicione uma mensagem para informar ao usuário que os campos são obrigatórios
-            // Exemplo: Toast.makeText(this, "Título e conteúdo são obrigatórios", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Título e conteúdo são obrigatórios", Toast.LENGTH_SHORT).show()
         }
     }
 }

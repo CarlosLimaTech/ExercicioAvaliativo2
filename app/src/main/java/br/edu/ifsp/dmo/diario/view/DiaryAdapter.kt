@@ -1,5 +1,6 @@
 package br.edu.ifsp.dmo.diario.view
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -29,9 +30,13 @@ class DiaryAdapter(private val onItemClick: (DiaryEntry) -> Unit) :
             binding.apply {
                 textViewTitle.text = entry.title
                 textViewContent.text = entry.content
-                root.setOnClickListener { onItemClick(entry) }
+                root.setOnClickListener {
+                    Log.d("DiaryAdapter", "Item clicado: ${entry.title}")
+                    onItemClick(entry)  // Chama o callback com o item clicado
+                }
             }
         }
+
     }
 }
 

@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.edu.ifsp.dmo.diario.databinding.ActivityMainBinding
 import br.edu.ifsp.dmo.diario.viewModel.DiaryViewModel
+import java.io.Serializable
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,13 +29,18 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
         diaryAdapter = DiaryAdapter { entry ->
-            // Handle item click, e.g., open detail/edit screen
+            // Aqui abrimos a AddDiaryEntryActivity para editar o registro
+            val intent = Intent(this, AddDiaryEntryActivity::class.java)
+            intent.putExtra("diaryEntry", entry as Serializable)
+            startActivity(intent)
         }
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = diaryAdapter
         }
     }
+
+
 
     private fun observeViewModel() {
         diaryViewModel.allEntries.observe(this) { entries ->
