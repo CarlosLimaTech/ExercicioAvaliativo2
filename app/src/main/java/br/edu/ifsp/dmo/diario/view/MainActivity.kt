@@ -1,5 +1,6 @@
 package br.edu.ifsp.dmo.diario.view
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -42,8 +43,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupFab() {
+        // Configura o comportamento do FAB ao ser clicado
         binding.fab.setOnClickListener {
-            // Open activity to add new diary entry
+            // Cria uma Intent para abrir a AddDiaryEntryActivity
+            val intent = Intent(this, AddDiaryEntryActivity::class.java)
+
+            // Inicia a nova Activity
+            startActivity(intent)
         }
     }
 }
