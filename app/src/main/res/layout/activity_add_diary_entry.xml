@@ -52,20 +52,29 @@
             android:layout_marginStart="8dp"/>
     </LinearLayout>
 
-    <Button
-        android:id="@+id/saveButton"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Salvar"
+        android:orientation="horizontal"
         android:layout_marginTop="16dp"
-        android:layout_gravity="center_horizontal"/>
+        android:gravity="center_horizontal">
 
-    <Button
-        android:id="@+id/deleteButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Excluir"
-        android:layout_marginTop="16dp"
-        android:layout_gravity="center_horizontal"
-        android:visibility="gone" /> <!-- Esconder o botão até sabermos que estamos editando -->
+        <ImageButton
+            android:id="@+id/saveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_save"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="@string/save_entry"
+            android:layout_marginEnd="16dp"/>
+
+        <ImageButton
+            android:id="@+id/deleteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_delete"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="@string/delete_entry"
+            android:visibility="gone"/>  <!-- Esconder o botão até sabermos que estamos editando -->
+    </LinearLayout>
 </LinearLayout>
