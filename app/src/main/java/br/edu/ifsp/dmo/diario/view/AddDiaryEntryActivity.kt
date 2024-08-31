@@ -49,28 +49,27 @@ class AddDiaryEntryActivity : AppCompatActivity() {
             val calendar = Calendar.getInstance()
             calendar.time = it.date
             val date = "${calendar.get(Calendar.DAY_OF_MONTH)}/${calendar.get(Calendar.MONTH) + 1}/${calendar.get(Calendar.YEAR)}"
-            binding.buttonSelectDate.text = date
+            binding.editTextDate.setText(date)
 
             // Formatar e exibir apenas a hora
             val time = "${calendar.get(Calendar.HOUR_OF_DAY)}:${calendar.get(Calendar.MINUTE)}"
-            binding.buttonSelectTime.text = time
+            binding.editTextTime.setText(time)
         }
     }
 
-
     private fun setupDateAndTimePickers() {
-        binding.buttonSelectDate.setOnClickListener {
+        binding.editTextDate.setOnClickListener {
             val calendar = Calendar.getInstance()
             val datePicker = DatePickerDialog(this, { _, year, month, dayOfMonth ->
                 calendar.set(year, month, dayOfMonth)
                 selectedDate = calendar.time
-                binding.buttonSelectDate.text = "$dayOfMonth/${month + 1}/$year"
+                binding.editTextDate.setText("$dayOfMonth/${month + 1}/$year")
             }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH))
 
             datePicker.show()
         }
 
-        binding.buttonSelectTime.setOnClickListener {
+        binding.editTextTime.setOnClickListener {
             val calendar = Calendar.getInstance()
             val timePicker = TimePickerDialog(this, { _, hourOfDay, minute ->
                 calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
@@ -78,7 +77,7 @@ class AddDiaryEntryActivity : AppCompatActivity() {
                 selectedDate?.let {
                     it.time = calendar.timeInMillis
                 }
-                binding.buttonSelectTime.text = "$hourOfDay:$minute"
+                binding.editTextTime.setText("$hourOfDay:$minute")
             }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true)
 
             timePicker.show()

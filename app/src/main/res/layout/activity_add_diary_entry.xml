@@ -4,20 +4,17 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Adicionar Nova Entrada"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="16dp"/>
-
+    <!-- EditText para o Título no topo -->
     <EditText
         android:id="@+id/editTextTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Título"/>
+        android:hint="Título"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp"/>
 
+    <!-- EditText para o Conteúdo -->
     <EditText
         android:id="@+id/editTextContent"
         android:layout_width="match_parent"
@@ -25,6 +22,7 @@
         android:hint="Conteúdo"
         android:layout_marginTop="8dp"/>
 
+    <!-- EditText para o Local -->
     <EditText
         android:id="@+id/editTextLocation"
         android:layout_width="match_parent"
@@ -32,26 +30,34 @@
         android:hint="Local"
         android:layout_marginTop="8dp"/>
 
+    <!-- Seção de Seleção de Data e Hora -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="8dp">
 
-        <Button
-            android:id="@+id/buttonSelectDate"
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/editTextDate"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Selecionar Data"/>
+            android:hint="Selecionar Data"
+            android:layout_weight="1"
+            android:focusable="false"
+            android:clickable="true"/>
 
-        <Button
-            android:id="@+id/buttonSelectTime"
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/editTextTime"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Selecionar Hora"
-            android:layout_marginStart="8dp"/>
+            android:hint="Selecionar Hora"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:focusable="false"
+            android:clickable="true"/>
     </LinearLayout>
 
+    <!-- Botões de Salvar e Excluir com Ícones -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
