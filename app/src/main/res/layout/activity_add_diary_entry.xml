@@ -4,33 +4,29 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- EditText para o Título no topo -->
     <EditText
         android:id="@+id/editTextTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Título"
+        android:hint="@string/hint_title"
         android:textSize="20sp"
         android:textStyle="bold"
         android:layout_marginBottom="16dp"/>
 
-    <!-- EditText para o Conteúdo -->
     <EditText
         android:id="@+id/editTextContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Conteúdo"
+        android:hint="@string/hint_content"
         android:layout_marginTop="8dp"/>
 
-    <!-- EditText para o Local -->
     <EditText
         android:id="@+id/editTextLocation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Local"
+        android:hint="@string/hint_location"
         android:layout_marginTop="8dp"/>
 
-    <!-- Seção de Seleção de Data e Hora -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,7 +37,7 @@
             android:id="@+id/editTextDate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="Selecionar Data"
+            android:hint="@string/select_date"
             android:layout_weight="1"
             android:focusable="false"
             android:clickable="true"/>
@@ -50,14 +46,13 @@
             android:id="@+id/editTextTime"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="Selecionar Hora"
+            android:hint="@string/select_time"
             android:layout_weight="1"
             android:layout_marginStart="8dp"
             android:focusable="false"
             android:clickable="true"/>
     </LinearLayout>
 
-    <!-- Botões de Salvar e Excluir com Ícones -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -81,6 +76,6 @@
             android:src="@drawable/ic_delete"
             android:background="?attr/selectableItemBackground"
             android:contentDescription="@string/delete_entry"
-            android:visibility="gone"/>  <!-- Esconder o botão até sabermos que estamos editando -->
+            android:visibility="gone"/>
     </LinearLayout>
 </LinearLayout>

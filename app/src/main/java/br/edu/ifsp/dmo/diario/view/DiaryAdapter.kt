@@ -32,7 +32,7 @@ class DiaryAdapter(private val onItemClick: (DiaryEntry) -> Unit) :
                 textViewContent.text = entry.content
                 root.setOnClickListener {
                     Log.d("DiaryAdapter", "Item clicado: ${entry.title}")
-                    onItemClick(entry)  // Chama o callback com o item clicado
+                    onItemClick(entry)
                 }
             }
         }

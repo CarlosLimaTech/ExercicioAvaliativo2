@@ -30,7 +30,7 @@ class AddDiaryEntryActivity : AppCompatActivity() {
         if (intent.hasExtra("diaryEntry")) {
             diaryEntry = intent.getSerializableExtra("diaryEntry") as DiaryEntry
             populateFields(diaryEntry)
-            binding.deleteButton.visibility = android.view.View.VISIBLE  // Exibe o botão de excluir
+            binding.deleteButton.visibility = android.view.View.VISIBLE
         }
 
         setupDateAndTimePickers()
@@ -131,7 +131,7 @@ class AddDiaryEntryActivity : AppCompatActivity() {
         diaryEntry?.let {
             diaryViewModel.delete(it)
             Toast.makeText(this, "Entrada excluída", Toast.LENGTH_SHORT).show()
-            finish()  // Fecha a activity após a exclusão
+            finish()
         }
     }
 }

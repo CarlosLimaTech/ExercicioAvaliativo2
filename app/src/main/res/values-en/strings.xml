@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Diary</string>
+    <string name="hint_title">Title</string>
+    <string name="hint_content">Content</string>
+    <string name="hint_location">Location</string>
+    <string name="select_date">Select Date</string>
+    <string name="select_time">Select Time</string>
+    <string name="save_entry">Save</string>
+    <string name="delete_entry">Delete</string>
+    <string name="add_new_entry">Add New Entry</string>
+</resources>

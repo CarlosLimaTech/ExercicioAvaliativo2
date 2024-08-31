@@ -1,6 +1,11 @@
 <resources>
-    <string name="add_new_entry">x</string>
     <string name="app_name">Diário</string>
+    <string name="hint_title">Título</string>
+    <string name="hint_content">Conteúdo</string>
+    <string name="hint_location">Local</string>
+    <string name="select_date">Selecionar Data</string>
+    <string name="select_time">Selecionar Hora</string>
     <string name="save_entry">Salvar</string>
     <string name="delete_entry">Excluir</string>
+    <string name="add_new_entry">Adicionar Nova Entrada</string>
 </resources>

@@ -29,7 +29,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
         diaryAdapter = DiaryAdapter { entry ->
-            // Aqui abrimos a AddDiaryEntryActivity para editar o registro
             val intent = Intent(this, AddDiaryEntryActivity::class.java)
             intent.putExtra("diaryEntry", entry as Serializable)
             startActivity(intent)
@@ -49,12 +48,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupFab() {
-        // Configura o comportamento do FAB ao ser clicado
         binding.fab.setOnClickListener {
-            // Cria uma Intent para abrir a AddDiaryEntryActivity
             val intent = Intent(this, AddDiaryEntryActivity::class.java)
-
-            // Inicia a nova Activity
             startActivity(intent)
         }
     }
