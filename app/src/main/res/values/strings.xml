@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">DIario</string>
+    <string name="add_new_entry">x</string>
 </resources>
