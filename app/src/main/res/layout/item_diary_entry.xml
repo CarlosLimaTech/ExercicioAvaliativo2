@@ -12,7 +12,7 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/textViewContent"
+        android:id="@+id/textViewDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="14sp" />

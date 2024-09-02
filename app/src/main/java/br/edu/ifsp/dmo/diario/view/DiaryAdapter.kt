@@ -29,7 +29,6 @@ class DiaryAdapter(private val onItemClick: (DiaryEntry) -> Unit) :
         fun bind(entry: DiaryEntry) {
             binding.apply {
                 textViewTitle.text = entry.title
-                textViewContent.text = entry.content
                 root.setOnClickListener {
                     Log.d("DiaryAdapter", "Item clicado: ${entry.title}")
                     onItemClick(entry)

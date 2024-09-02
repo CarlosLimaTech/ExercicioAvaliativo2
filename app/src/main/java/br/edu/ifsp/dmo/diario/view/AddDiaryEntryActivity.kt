@@ -26,7 +26,6 @@ class AddDiaryEntryActivity : AppCompatActivity() {
 
         diaryViewModel = ViewModelProvider(this).get(DiaryViewModel::class.java)
 
-        // Recupera o objeto DiaryEntry se ele foi passado
         if (intent.hasExtra("diaryEntry")) {
             diaryEntry = intent.getSerializableExtra("diaryEntry") as DiaryEntry
             populateFields(diaryEntry)
@@ -45,13 +44,11 @@ class AddDiaryEntryActivity : AppCompatActivity() {
             binding.editTextLocation.setText(it.location)
             selectedDate = it.date
 
-            // Formatar e exibir apenas a data
             val calendar = Calendar.getInstance()
             calendar.time = it.date
             val date = "${calendar.get(Calendar.DAY_OF_MONTH)}/${calendar.get(Calendar.MONTH) + 1}/${calendar.get(Calendar.YEAR)}"
             binding.editTextDate.setText(date)
 
-            // Formatar e exibir apenas a hora
             val time = "${calendar.get(Calendar.HOUR_OF_DAY)}:${calendar.get(Calendar.MINUTE)}"
             binding.editTextTime.setText(time)
         }
